@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- ========================================================================= -->
+  <!-- 1. META TAGS E CONFIGURAÇÕES BÁSICAS DO HEAD                              -->
+  <!-- ========================================================================= -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DP6 | MarTech & Analytics Excellence</title>
+
+  <!-- Google Fonts - Inter (Tipografia limpa e moderna focada em tech) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- ========================================================================= -->
+  <!-- 2. ESPAÇO RESERVADO PARA O INÍCIO DO SNIPPET DO GOOGLE TAG MANAGER (GTM)  -->
+  <!-- ========================================================================= -->
+  <!-- 
+    [GTM HEADER SNIPPET PLACEHOLDER]
+    Insira aqui o código do GTM no <head>:
+    
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+  -->
+
+  <!-- ========================================================================= -->
+  <!-- 3. ESTILO E DESIGN SYSTEM (Inspiração DP6: Tons de Azul, Dark Blue, Clean)-->
+  <!-- ========================================================================= -->
+  <style>
+    /* Variáveis Globais de Cores e Estilos DP6 */
+    :root {
+      --color-primary: #002B49;      /* Azul Escuro Institucional DP6 */
+      --color-secondary: #0082CA;    /* Azul Vibrante Tech */
+      --color-accent: #00C4B3;       /* Azul/Verde Cyan de Destaque */
+      --color-bg-light: #F4F7FA;     /* Fundo Claro Clean */
+      --color-bg-card: #FFFFFF;      /* Fundo de Cards */
+      --color-text-dark: #1E293B;    /* Texto Principal */
+      --color-text-muted: #64748B;   /* Texto Secundário */
+      --color-border: #E2E8F0;       /* Bordas */
+      --color-error: #EF4444;        /* Mensagem de Erro */
+      --color-success: #10B981;      /* Mensagem de Sucesso */
+      --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+      --transition-fast: 0.2s ease-in-out;
+      --border-radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--color-bg-light);
+      color: var(--color-text-dark);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* --- HEADER --- */
+    header {
+      background-color: var(--color-primary);
+      color: #FFFFFF;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #FFFFFF;
+    }
+
+    .logo span {
+      color: var(--color-accent);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+
+    nav a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #E2E8F0;
+      transition: color var(--transition-fast);
+    }
+
+    nav a:hover {
+      color: var(--color-accent);
+    }
+
+    .btn-header {
+      background-color: var(--color-secondary);
+      color: #FFFFFF;
+      padding: 8px 18px;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background-color var(--transition-fast);
+    }
+
+    .btn-header:hover {
+      background-color: #006bb0;
+    }
+
+    /* --- HERO SECTION --- */
+    .hero {
+      background: linear-gradient(135deg, var(--color-primary) 0%, #00406C 100%);
+      color: #FFFFFF;
+      padding: 80px 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .hero-text h1 span {
+      color: var(--color-accent);
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      color: #CBD5E1;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 15px;
+    }
+
+    .btn-primary {
+      background-color: var(--color-accent);
+      color: var(--color-primary);
+      padding: 14px 28px;
+      font-weight: 700;
+      border-radius: var(--border-radius);
+      display: inline-block;
+      transition: transform var(--transition-fast), opacity var(--transition-fast);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: #FFFFFF;
+      border: 2px solid var(--color-secondary);
+      padding: 12px 26px;
+      font-weight: 600;
+      border-radius: var(--border-radius);
+      display: inline-block;
+      transition: background-color var(--transition-fast);
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(0, 130, 202, 0.2);
+    }
+
+    /* HERO FORM CARD */
+    .hero-form-card {
+      background-color: var(--color-bg-card);
+      color: var(--color-text-dark);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-form-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      color: var(--color-primary);
+    }
+
+    .hero-form-card p {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: var(--color-text-dark);
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color var(--transition-fast);
+    }
+
+    .form-group input:focus {
+      border-color: var(--color-secondary);
+    }
+
+    .btn-submit {
+      width: 100%;
+      background-color: var(--color-primary);
+      color: #FFFFFF;
+      padding: 12px;
+      border: none;
+      border-radius: var(--border-radius);
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color var(--transition-fast);
+    }
+
+    .btn-submit:hover {
+      background-color: var(--color-secondary);
+    }
+
+    .form-feedback {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: none;
+    }
+
+    .form-feedback.error {
+      color: var(--color-error);
+      display: block;
+    }
+
+    .form-feedback.success {
+      color: var(--color-success);
+      display: block;
+    }
+
+    /* --- SERVICES / DIFFERENTIALS --- */
+    .services {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 2.2rem;
+      color: var(--color-primary);
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: var(--color-text-muted);
+      font-size: 1rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .service-card {
+      background-color: var(--color-bg-card);
+      padding: 30px;
+      border-radius: var(--border-radius);
+      border: 1px solid var(--color-border);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+
+    .service-card h4 {
+      font-size: 1.2rem;
+      color: var(--color-primary);
+      margin-bottom: 15px;
+    }
+
+    .service-card p {
+      color: var(--color-text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .service-link {
+      font-weight: 600;
+      color: var(--color-secondary);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .service-link:hover {
+      color: var(--color-primary);
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      background-color: var(--color-primary);
+      color: #94A3B8;
+      padding: 40px 0 20px 0;
+      border-top: 4px solid var(--color-accent);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 30px;
+    }
+
+    .footer-about h3 {
+      color: #FFFFFF;
+      margin-bottom: 10px;
+    }
+
+    .footer-links h4 {
+      color: #FFFFFF;
+      margin-bottom: 15px;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 8px;
+    }
+
+    .footer-links a:hover {
+      color: var(--color-accent);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #1E293B;
+      font-size: 0.85rem;
+    }
+
+    /* RESPONSIVIDADE */
+    @media (max-width: 768px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-text h1 {
+        font-size: 2.1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ========================================================================= -->
+  <!-- 4. ESPAÇO RESERVADO PARA O CORPO DO SNIPPET DO GOOGLE TAG MANAGER (NOSCRIPT)-->
+  <!-- ========================================================================= -->
+  <!-- 
+    [GTM BODY SNIPPET PLACEHOLDER]
+    Insira aqui o código noscript do GTM logo após a abertura da tag <body>:
+    
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  -->
+
+  <!-- ========================================================================= -->
+  <!-- 5. CONTEÚDO HTML DA LANDING PAGE                                           -->
+  <!-- ========================================================================= -->
+
+  <!-- HEADER -->
+  <header>
+    <div class="container header-content">
+      <div class="logo">DP6<span>.analytics</span></div>
+      <nav>
+        <ul>
+          <li><a href="#servicos" data-gtm-type="link-header" data-gtm-title="Menu Serviços">Serviços</a></li>
+          <li><a href="#sobre" data-gtm-type="link-header" data-gtm-title="Menu Sobre Nos">Sobre Nós</a></li>
+          <li><a href="#contato" class="btn-header" data-gtm-type="botao-header" data-gtm-title="Fale Conosco Header">Fale Conosco</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <h1>Transforme Dados em <span>Resultados Reais</span></h1>
+        <p>Acelere a maturidade digital da sua empresa com inteligência de dados, rastreamento avançado e arquitetura de DataLayer padronizada.</p>
+        <div class="hero-actions">
+          <a href="#servicos" class="btn-primary" data-gtm-type="botao" data-gtm-title="Conheca os Servicos">Conheça os Serviços</a>
+          <a href="#demo" class="btn-secondary" data-gtm-type="botao" data-gtm-title="Ver Demostracao">Ver Demonstração</a>
+        </div>
+      </div>
+
+      <!-- FORMULÁRIO DE CAPTURA DE LEADS -->
+      <div class="hero-form-card" id="contato">
+        <h3>Receba um Diagnóstico</h3>
+        <p>Preencha os campos abaixo para conversar com nossos especialistas.</p>
+        
+        <form id="leadForm" novalidate>
+          <div class="form-group">
+            <label for="nome">Nome Completo *</label>
+            <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+          </div>
+          <div class="form-group">
+            <label for="email">E-mail Corporativo *</label>
+            <input type="email" id="email" name="email" placeholder="nome@empresa.com" required>
+          </div>
+          <div class="form-group">
+            <label for="cargo">Cargo / Empresa *</label>
+            <input type="text" id="cargo" name="cargo" placeholder="Ex: Head de Marketing - Empresa X" required>
+          </div>
+          
+          <button type="submit" class="btn-submit" data-gtm-type="submit" data-gtm-title="Enviar Formulario Lead">
+            Solicitar Diagnóstico
+          </button>
+          <div id="formFeedback" class="form-feedback"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO DE SERVIÇOS / DIFERENCIAIS -->
+  <section class="services" id="servicos">
+    <div class="container">
+      <div class="section-title">
+        <h2>Nossas Especialidades em Data & Analytics</h2>
+        <p>Soluções ponta a ponta para governança, mensuração e ativação de dados.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <h4>Analytics & Tracking</h4>
+          <p>Estruturação técnica de dataLayer, auditoria de tags e garantia de qualidade de dados (Data Quality).</p>
+          <a href="#tracking" class="service-link" data-gtm-type="link" data-gtm-title="Saiba mais Analytics e Tracking">Saiba mais &rarr;</a>
+        </div>
+
+        <div class="service-card">
+          <h4>Engenharia de Dados</h4>
+          <p>Construção de pipelines, integração com BigQuery e modelagem para arquiteturas modernas de BI.</p>
+          <a href="#engenharia" class="service-link" data-gtm-type="link" data-gtm-title="Saiba mais Engenharia de Dados">Saiba mais &rarr;</a>
+        </div>
+
+        <div class="service-card">
+          <h4>Ativação & MarTech</h4>
+          <p>Modelos de inteligência artificial e personalização da jornada do cliente em tempo real nos canais de mídia.</p>
+          <a href="#ativacao" class="service-link" data-gtm-type="link" data-gtm-title="Saiba mais Ativacao Martech">Saiba mais &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <div class="logo" style="margin-bottom: 10px;">DP6<span>.analytics</span></div>
+          <p>Consultoria técnica focada em inteligência de dados, otimização de performance e mensuração digital.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="#servicos" data-gtm-type="link-footer" data-gtm-title="Footer Servicos">Serviços</a></li>
+            <li><a href="#sobre" data-gtm-type="link-footer" data-gtm-title="Footer Sobre Nos">Sobre Nós</a></li>
+            <li><a href="#carreiras" data-gtm-type="link-footer" data-gtm-title="Footer Carreiras">Carreiras</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Redes Sociais</h4>
+          <ul>
+            <li><a href="https://linkedin.com" target="_blank" data-gtm-type="link-footer" data-gtm-title="LinkedIn DP6">LinkedIn</a></li>
+            <li><a href="https://github.com" target="_blank" data-gtm-type="link-footer" data-gtm-title="GitHub DP6">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 DP6 - Exercício Pedagógico de Analytics & DataLayer.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- 6. IMPLEMENTAÇÃO DO DATALAYER E LÓGICA DE RASTREAMENTO                    -->
+  <!-- ========================================================================= -->
+  <script>
+    /**
+     * INICIALIZAÇÃO DO DATALAYER
+     * Garante que o array window.dataLayer exista no escopo global.
+     */
+    window.dataLayer = window.dataLayer || [];
+
+    /**
+     * CONFIGURAÇÕES DA PÁGINA
+     */
+    const PAGE_NAME = 'lp-home'; // Nome padronizado da página para o custom_section
+
+    /**
+     * FUNÇÃO DE SANITIZAÇÃO ESTREITA
+     * Regras aplicadas:
+     * 1. Converte para string e aplica caixa baixa (.toLowerCase())
+     * 2. Remove acentos e caracteres diacríticos (Normalize NFD + Regex)
+     * 3. Substitui caracteres não alfanuméricos (espaços, pontuações, símbolos) por hífen (-)
+     * 4. Remove hífens duplicados ou nas extremidades (trim de hífens)
+     *
+     * Exemplo: "Fale Conosco Header!" -> "fale-conosco-header"
+     */
+    function sanitizeText(text) {
+      if (!text) return '';
+      return text
+        .toString()
+        .toLowerCase()
+        .normalize('NFD')                     // Decompõe caracteres acentuados
+        .replace(/[\u0300-\u036f]/g, '')     // Remove os acentos
+        .replace(/[^a-z0-0\s-]/g, '')        // Remove caracteres especiais mantendo espaço e hífen
+        .trim()
+        .replace(/[\s_]+/g, '-')              // Troca espaços e underscores por hífen
+        .replace(/-+/g, '-');                // Impede hífens múltiplos seguidos (ex: --)
+    }
+
+    /**
+     * FUNÇÃO AUXILIAR PARA DISPARAR O EVENTO NO DATALAYER
+     * Mantém o padrão estrito exigido pela especificação DP6:
+     * {
+     *   'event': 'clique',
+     *   'custom_section': 'nome-da-pagina',
+     *   'custom_type': 'tipo-do-elemento',
+     *   'custom_title': 'nome-do-elemento'
+     * }
+     */
+    function pushDataLayerEvent(type, title) {
+      const sanitizedSection = sanitizeText(PAGE_NAME);
+      const sanitizedType = sanitizeText(type);
+      const sanitizedTitle = sanitizeText(title);
+
+      const payload = {
+        'event': 'clique',
+        'custom_section': sanitizedSection,
+        'custom_type': sanitizedType,
+        'custom_title': sanitizedTitle
+      };
+
+      // Disparo no dataLayer
+      window.dataLayer.push(payload);
+
+      // Log no console para auditoria pedagógica em ambiente de desenvolvimento
+      console.log('[DataLayer Push SUCCESS]:', payload);
+    }
+
+    /**
+     * EVENT LISTENER GLOBAL DE CLIQUES (Event Delegation)
+     * Captura interações em botões e links clicáveis de forma dinâmica e performática.
+     */
+    document.addEventListener('click', function(event) {
+      // Busca o elemento interativo mais próximo (botão ou link)
+      const clickableElement = event.target.closest('a, button');
+
+      if (!clickableElement) return;
+
+      // Se for o botão de submit do formulário, o disparo é gerenciado exclusivamente
+      // pela validação no evento de 'submit' do formulário para evitar disparos indevidos.
+      if (clickableElement.getAttribute('type') === 'submit') return;
+
+      // Definição do custom_type
+      let customType = clickableElement.getAttribute('data-gtm-type');
+      
+      if (!customType) {
+        // Fallback dinâmico caso não haja atributo data-gtm-type explícito
+        if (clickableElement.closest('header')) {
+          customType = clickableElement.tagName.toLowerCase() === 'a' ? 'link-header' : 'botao-header';
+        } else if (clickableElement.closest('footer')) {
+          customType = clickableElement.tagName.toLowerCase() === 'a' ? 'link-footer' : 'botao-footer';
+        } else {
+          customType = clickableElement.tagName.toLowerCase() === 'a' ? 'link' : 'botao';
+        }
+      }
+
+      // Definição do custom_title
+      const customTitle = clickableElement.getAttribute('data-gtm-title') || 
+                          clickableElement.innerText || 
+                          clickableElement.getAttribute('title') || 
+                          'elemento-sem-titulo';
+
+      // Dispara o evento sanitizado
+      pushDataLayerEvent(customType, customTitle);
+    });
+
+    /**
+     * VALIDAÇÃO E EVENTO DO FORMULÁRIO DE LEADS
+     * Regra Obrigatória: O dataLayer só dispara se TODOS os campos estiverem preenchidos corretamente.
+     */
+    const leadForm = document.getElementById('leadForm');
+    const formFeedback = document.getElementById('formFeedback');
+
+    if (leadForm) {
+      leadForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // Impede o envio do formulário padrão
+
+        const nome = document.getElementById('nome').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const cargo = document.getElementById('cargo').value.trim();
+        const submitBtn = leadForm.querySelector('button[type="submit"]');
+
+        // Validação Estrita de Preenchimento
+        if (!nome || !email || !cargo) {
+          formFeedback.className = 'form-feedback error';
+          formFeedback.innerText = 'Atenção: Preencha todos os campos obrigatórios antes de enviar.';
+          
+          console.warn('[DataLayer BLOCKED]: Envio bloqueado devido a campos não preenchidos.');
+          return; // Aborta a execução - NÃO dispara o dataLayer
+        }
+
+        // Se a validação passar:
+        formFeedback.className = 'form-feedback success';
+        formFeedback.innerText = 'Obrigado! Dados enviados com sucesso.';
+
+        // Captura atributos do botão de envio
+        const customType = submitBtn.getAttribute('data-gtm-type') || 'submit';
+        const customTitle = submitBtn.getAttribute('data-gtm-title') || 'enviar-formulario';
+
+        // Dispara o dataLayer do Envio
+        pushDataLayerEvent(customType, customTitle);
+
+        // Limpa o formulário após o disparo bem-sucedido
+        leadForm.reset();
+      });
+    }
+  </script>
+</body>
+</html>
